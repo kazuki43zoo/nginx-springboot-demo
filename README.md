@@ -6,13 +6,19 @@
 * https://docs.docker.com/docker-for-mac/
 * https://docs.docker.com/docker-for-windows/
 
+## Clone repository on your local machine
+
+```
+$ git clone https://github.com/kazuki43zoo/nginx-springboot-demo.git
+```
+
 ## Build images & containers up
 
 ```text
+$ cd nginx-springboot-demo
 $ ./mvnw clean package
 $ docker-compose up --build
 ```
-
 
 ## Containers up
 
