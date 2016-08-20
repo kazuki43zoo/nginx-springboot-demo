@@ -1,0 +1,10 @@
+springboot:
+  build: .
+  ports:
+    - "8080:8080"
+webserver:
+  build: nginx
+  ports:
+    - "10080:80"
+  links:
+    - springboot
