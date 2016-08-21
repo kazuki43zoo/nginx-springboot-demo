@@ -36,13 +36,15 @@ public class NginxSpringbootDemoApplication {
     static class FileUploadRestController {
 
         @RequestMapping("/files")
-        String upload(MultipartFile multipartFile) {
-            return multipartFile.getOriginalFilename();
+        FileResource upload(MultipartFile multipartFile) {
+            FileResource resource = new FileResource();
+            resource.setFileName(multipartFile.getOriginalFilename());
+            return resource;
         }
 
         @ExceptionHandler
         @ResponseStatus(HttpStatus.PAYLOAD_TOO_LARGE)
-        public ApiError handleMultipartException(MultipartException e) {
+        ApiError handleMultipartException(MultipartException e) {
             e.printStackTrace();
             ApiError error = new ApiError();
             error.setCode("UPLOAD_SIZE_ERROR");
@@ -60,6 +62,18 @@ public class NginxSpringbootDemoApplication {
 
         public void setCode(String code) {
             this.code = code;
+        }
+    }
+
+    static class FileResource implements Serializable {
+        private String fileName;
+
+        public String getFileName() {
+            return fileName;
+        }
+
+        public void setFileName(String fileName) {
+            this.fileName = fileName;
         }
     }
 
